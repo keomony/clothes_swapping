@@ -1,6 +1,14 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const db = mongoose.connection;
+
+mongoose.connect('mongodb://localhost/clothes_swapping_test');
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', function() {
+
+})
 
 app.use(bodyParser.urlencoded({extended: true}))
 
