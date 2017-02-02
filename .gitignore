@@ -17,8 +17,12 @@
 .byebug_history
 
 
-# Don't check in credentials 
+# Don't check in credentials
 config/env.yml
 
 # Ignore env files
 .env
+
+# Ignore all uploaded images
+
+/public/system/*

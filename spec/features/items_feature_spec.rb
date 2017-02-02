@@ -17,16 +17,32 @@ describe "Item" do
       add_an_item
     end
 
-    scenario 'display items' do
+    it 'should display items' do
       visit '/items'
       expect(page).to have_content 'Pokemon onesie'
       expect(page).not_to have_content 'No items yet'
     end
 
+    it 'should allow a user to see a particular item' do
+      visit '/items'
+      click_link 'Show'
+      expect(page).to have_content 'Pokemon onesie'
+      expect(current_path).to eq "/items/#{@item.id}"
+    end
+
+    it 'should not allow another user to edit a particular item' do
+      click_link('Sign out')
+      visit('/')
+      another_sign_up
+      visit('/')
+      click_link('Edit')
+      expect(page).not_to have_content('Delete')
+    end
+
   end
 
   context 'adding an item' do
-    scenario 'prompts user to fill out a form, then displays the new item' do
+    it 'prompts user to fill out a form, then displays the new item' do
       visit '/items'
       click_link 'Add an item'
       fill_in('Description', with: 'Best beast for best Halloween')
@@ -37,6 +53,14 @@ describe "Item" do
       expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'
       expect(current_path).to eq "/items"
+    end
+
+    it 'adds an item with an image' do
+      upload_bayon_photo
+      expect(page).to have_content 'Best beast for best Halloween'
+      expect(page).to have_content 'Item was successfully created'
+      expect(page).to have_css("img[src*='ban.jpg']")
+
     end
   end
 
