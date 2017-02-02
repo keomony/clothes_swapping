@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @item = Item.find(params[:id])
   end
 
   # GET /items/new
@@ -19,6 +20,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @item = Item.find(params[:id])
   end
 
   # POST /items
@@ -26,7 +28,7 @@ class ItemsController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @item = @user.items.new(item_params)
-    
+
     respond_to do |format|
       if @item.save
         format.html { redirect_to '/items', notice: 'Item was successfully created.' }
@@ -41,6 +43,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+    @item = Item.find(params[:id])
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
