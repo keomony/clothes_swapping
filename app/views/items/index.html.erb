@@ -17,7 +17,7 @@
     <% if @items.any? %>
       <% @items.each do |item| %>
         <tr>
-          <td><%= image_tag item.image.url(:thumb) %><td>
+          <td><%= image_tag item.image.url(:medium) %><td>
           <td><%= item.size %></td>
           <td><%= item.color %></td>
           <td><%= item.category %></td>

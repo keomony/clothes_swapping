@@ -41,7 +41,7 @@ gem 'paperclip'
 
 # Amazon web services for cloud storage
 gem 'dotenv-rails', groups: [:development, :test], require:'dotenv/rails-now'
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
