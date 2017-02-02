@@ -39,6 +39,14 @@ describe "Item" do
       expect(page).not_to have_content('Delete')
     end
 
+    it 'should allow a user to delete his own item' do
+      visit ('/items')
+      click_link('Delete')
+      expect(page).to have_content("Item successfully destroyed")
+      expect(page).not_to have_content("Pokemon Onesie")
+
+    end
+
   end
 
   context 'adding an item' do
