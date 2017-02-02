@@ -35,7 +35,7 @@ describe "Item" do
       visit('/')
       another_sign_up
       visit('/')
-      click_link('Edit')
+      expect(page).not_to have_content('Edit')
       expect(page).not_to have_content('Delete')
     end
 

@@ -25,5 +25,9 @@
   <%= @item.category %>
 </p>
 
+
+<% if @item.user_id == current_user.id  %>
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
+<%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
