@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @item = @user.items.new(item_params)
-
+    
     respond_to do |format|
       if @item.save
         format.html { redirect_to '/items', notice: 'Item was successfully created.' }

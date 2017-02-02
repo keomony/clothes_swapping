@@ -13,6 +13,7 @@ def sign_up
   click_button('Sign up')
 end
 
+
 def another_sign_up
   visit('/')
   click_link('Sign up')
