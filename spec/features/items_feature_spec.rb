@@ -40,10 +40,12 @@ describe "Item" do
     end
 
     it 'should allow a user to delete his own item' do
+      upload_bayon_photo
       visit ('/items')
+      click_link('Show')
       click_link('Delete')
       expect(page).to have_content("Item successfully destroyed")
-      expect(page).not_to have_content("Pokemon Onesie")
+      expect(page).not_to have_content("Best beast for best Halloween")
 
     end
 
