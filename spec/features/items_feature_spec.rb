@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 describe "Item" do
+
+  let(:user) { create(:user) }
+  let(:user_2) { create(:user, email: "testthisthing@test.com", id: '101') }
+
   before do
-    sign_up
+    login_as(user, :scope => :user)
   end
+
   context "no items have been added" do
     scenario "should display a prompt to add an item" do
       visit '/items'
@@ -13,8 +18,9 @@ describe "Item" do
   end
 
   context 'items have been added' do
+
     before do
-      add_an_item
+      @new_image = create(:item, user_id: user.id, id: '1')
     end
 
     it 'should display items' do
@@ -27,26 +33,24 @@ describe "Item" do
       visit '/items'
       click_link 'Show'
       expect(page).to have_content 'Pokemon onesie'
-      expect(current_path).to eq "/items/#{@item.id}"
+      expect(current_path).to eq "/items/#{@new_image.id}"
     end
 
     it 'should not allow another user to edit a particular item' do
-      click_link('Sign out')
+      sign_out
       visit('/')
-      another_sign_up
+      login_as(user_2, :scope => :user)
       visit('/')
       expect(page).not_to have_content('Edit')
-      expect(page).not_to have_content('Delete')
+      expect(page).not_to have_content('Destroy')
     end
 
-    xit 'should allow a user to delete his own item' do
-      upload_bayon_photo
+    it 'should allow a user to delete his own item' do
       visit ('/items')
       click_link('Show')
-      click_link('Delete')
-      expect(page).to have_content("Item successfully destroyed")
+      click_link('Destroy')
+      expect(page).to have_content("Item was successfully destroyed")
       expect(page).not_to have_content("Best beast for best Halloween")
-
     end
 
   end
@@ -65,7 +69,7 @@ describe "Item" do
       expect(current_path).to eq "/items"
     end
 
-    xit 'should add an item with an image' do
+    it 'should add an item with an image' do
       upload_bayon_photo
       expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'

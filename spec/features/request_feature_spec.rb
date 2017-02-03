@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 describe "Request" do
-let(:user) { create(:user) }
-let(:user_2) { create(:user, id: '101') }
+
+  let(:user) { create(:user) }
+  let(:user_2) { create(:user, email: "testthisthing@test.com", id: '101') }
+
   before do
     login_as(user, :scope => :user)
-    add_image = create(:item, user_id: user.id)
+    new_image = create(:item, user_id: user.id)
     sign_out
-    login_ad(user_2, :scope => :user)
+    login_as(user_2, :scope => :user)
   end
 
   scenario "user has uploaded and item" do
