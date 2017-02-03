@@ -1,37 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Size</th>
-      <th>Color</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
     <% if @items.any? %>
+    <div class="col-lg-12">
+        <h1 class="page-header">Items Gallery</h1>
+    </div>
       <% @items.each do |item| %>
-        <tr>
-          <td><%= image_tag item.image.url(:medium) %><td>
-          <td><%= item.size %></td>
-          <td><%= item.color %></td>
-          <td><%= item.category %></td>
-          <td><%= item.description %></td>
-          <td><%= link_to 'Show', item %></td>
-          </tr>
+      <div class="row">
+      <div class="container">
+              <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                  <a class="thumbnail" href="#">
+                      <%= image_tag item.image.url(:medium) %>
+                  </a>
+                  <%= item.size %>
+                  <%= item.color %>
+                  <%= item.category %>
+                  <%= item.description %>
+                  <%= link_to 'Show', item %>
+              </div>
       <% end %>
+      </div>
+      </div>
     <% else %>
       No items yet
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if current_user %>
-  <%= link_to 'Add an item', new_item_path %>
-<% end %>

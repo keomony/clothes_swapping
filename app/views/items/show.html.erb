@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Photo:</strong>
   <%= image_tag @item.image.url(:medium) %>
 </p>
 
@@ -32,3 +30,5 @@
 <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 <% end %>
+</div>
+</div>
