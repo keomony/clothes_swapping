@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/keomony/clothes_swapping.png?label=ready&title=Ready)](https://waffle.io/keomony/clothes_swapping)
 # README
 
 This README would normally document whatever steps are necessary to get the

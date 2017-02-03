@@ -35,6 +35,6 @@ def upload_bayon_photo
   fill_in('Size', with: 'M')
   fill_in('Color', with: 'Red')
   fill_in('Category', with: 'Costume')
-  attach_file("item[image]", Rails.root + "spec/fixtures/ban.jpg")
+  attach_file("item[image]", Rails.root + "spec/fixtures/hippy_jumper.jpg")
   click_button('Create Item')
 end
