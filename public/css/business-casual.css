@@ -7,12 +7,11 @@
 body {
     /*font-family: "Open Sans","Helvetica Neue", Helvetica,Arial,sans-serif;*/
     background: no-repeat center center fixed;
-
+    background-color: #c9c9c1;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    padding: 100px;
 }
 
 .thumb {
@@ -36,7 +35,6 @@ p {
     font-size: 1.25em;
     line-height: 1.6;
     color: #000;
-    /*font: red;*/
 }
 
 hr {
@@ -59,6 +57,8 @@ hr {
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 3px;
+    padding-left: 90px;
+     /*text-align: center*/
 }
 
 .img-full {
@@ -85,12 +85,14 @@ hr {
     border-color: #999999;
 }
 
+
 .box {
     margin-bottom: 20px;
     margin-top: 20px;
     padding: 30px 15px;
     background: #fff;
     background: rgba(255,255,255,0.9);
+
 }
 
 .intro-text {
@@ -98,6 +100,7 @@ hr {
     font-size: 1.25em;
     font-weight: 400;
     letter-spacing: 1px;
+
 }
 
 .img-border {
@@ -234,7 +237,7 @@ footer p {
 	background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
 	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
-	background-color:#f6f6f6;
+	background-color:#ffffff;
 }
 .button:active {
 	position:relative;
