@@ -26,6 +26,12 @@ describe "My profile" do
       expect(current_path).to eq ("/")
     end
 
+    it "has an edit user account link" do
+      click_link("Edit Account")
+      expect(current_path).to eq ("/users/edit")
+    end
+
+
   end
 
 
