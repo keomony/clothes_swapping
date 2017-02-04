@@ -29,3 +29,4 @@ config/env.yml
 # Ignore all testing images
 
 /spec/fixtures/*
+/spec/files/images/
