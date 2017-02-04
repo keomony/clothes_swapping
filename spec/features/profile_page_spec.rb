@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "profile page" do
+describe "My profile" do
 
   let(:user) { create(:user) }
 
@@ -12,8 +12,18 @@ describe "profile page" do
       visit "/users/#{user.id}"
     end
 
-    it "has profile page" do
-      expect(page).to have_content("Hello swap@clothes.com")
+    it "has a welcome message" do
+      expect(page).to have_content("Hello, swap@clothes.com")
+    end
+
+    it "has a link to my wardrobe" do
+      click_link("My Wardrobe")
+      expect(current_path).to eq ("/users/#{user.id}/wardrobe")
+    end
+
+    it "has a back link" do
+      click_link("Back")
+      expect(current_path).to eq ("/")
     end
 
   end
