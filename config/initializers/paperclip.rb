@@ -1,6 +1,8 @@
-if Rails.env.development? || Rails.env.test?
+if Rails.env.test?
   Paperclip::Attachment.default_options[:storage] = "filesystem"
-  Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/files/images/testing"
+  Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/files/images/testing.jpg"
+elsif Rails.env.development?
+  Paperclip::Attachment.default_options[:storage] = "filesystem"
 elsif Rails.env.production?
   Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
   Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'

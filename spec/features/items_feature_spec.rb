@@ -19,21 +19,23 @@ describe "Item" do
 
   context 'items have been added' do
 
-    before do
-      @new_image = create(:item, user_id: user.id, id: '1')
+    before(:each) do
+      @new_image = create(:item, user_id: user.id, id: 5)
+      @new_image.save
     end
 
     it 'should display items' do
       visit '/items'
-      expect(page).to have_content 'Pokemon onesie'
+      expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
       expect(page).not_to have_content 'No items yet'
     end
 
-    it 'should allow a user to see a particular item' do
-      visit '/items'
-      click_link 'Show'
-      expect(page).to have_content 'Pokemon onesie'
+    it 'clicking a photo allows a user to see that item' do
+      visit '/'
+      expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
+      click_on('Pokemon onesie')
       expect(current_path).to eq "/items/#{@new_image.id}"
+      expect(page).to have_content 'Pokemon onesie'
     end
 
     it 'should not allow another user to edit a particular item' do
@@ -47,7 +49,7 @@ describe "Item" do
 
     it 'should allow a user to delete his own item' do
       visit ('/items')
-      click_link('Show')
+      click_on('Pokemon onesie')
       click_link('Destroy')
       expect(page).to have_content("Item was successfully destroyed")
       expect(page).not_to have_content("Best beast for best Halloween")
@@ -64,17 +66,14 @@ describe "Item" do
       fill_in('Color', with: 'Red')
       fill_in('Category', with: 'Costume')
       click_button('Create Item')
-      expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'
       expect(current_path).to eq "/items"
     end
 
     it 'should add an item with an image' do
       upload_bayon_photo
-      expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'
       expect(page).to have_css("img[src*='hippy_jumper.jpg']")
-
     end
   end
 
