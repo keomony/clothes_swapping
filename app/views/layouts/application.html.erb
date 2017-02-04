@@ -40,6 +40,7 @@
           <li>
           <% if current_user %>
             <%= link_to 'Add an item', new_item_path %>
+            <%= link_to 'My profile', user_show_path(current_user) %>
           <% end %>
         </li>
           <li>
