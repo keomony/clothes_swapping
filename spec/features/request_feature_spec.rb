@@ -12,8 +12,5 @@ describe "Request" do
     login_as(user_2, :scope => :user)
   end
 
-  scenario "user has uploaded and item" do
-    visit '/'
-    expect(page).to have_content "Pokemon onesie"
-  end
+  
 end

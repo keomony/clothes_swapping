@@ -10,7 +10,7 @@ feature "User can sign in and out" do
 
    it "should not see a 'my profile' link" do
      visit('/')
-     expect(page).not_to have_link('Sign in')
+     expect(page).not_to have_link('My profile')
    end
 
    it "should not see 'sign out' link" do
@@ -31,7 +31,7 @@ feature "User can sign in and out" do
 
    it "should see a 'my profile' link" do
      visit('/')
-     expect(page).to have_link('Sign in')
+     expect(page).to have_link('My profile')
    end
 
    it "should not see a 'sign in' link and a 'sign up' link" do

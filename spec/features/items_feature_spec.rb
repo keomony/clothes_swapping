@@ -20,8 +20,8 @@ describe "Item" do
   context 'items have been added' do
 
     before(:each) do
-      @new_image = create(:item, user_id: user.id, id: '1')
-      # add_an_item
+      @new_image = create(:item, user_id: user.id, id: '5')
+      @new_image.save
     end
 
     it 'should display items' do
@@ -33,7 +33,7 @@ describe "Item" do
     it 'should allow a user to see a particular item' do
       visit '/items'
       find(:css, "img[src*='pokemon_onesie.jpg']").click
-      # expect(current_path).to eq "/items/#{@new_image.id}"
+      expect(current_path).to eq "/items/#{@new_image.id}"
       expect(page).to have_content 'Pokemon onesie'
     end
 
