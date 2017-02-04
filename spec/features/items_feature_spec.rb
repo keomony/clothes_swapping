@@ -19,21 +19,22 @@ describe "Item" do
 
   context 'items have been added' do
 
-    before do
+    before(:each) do
       @new_image = create(:item, user_id: user.id, id: '1')
+      # add_an_item
     end
 
     it 'should display items' do
       visit '/items'
-      expect(page).to have_content 'Pokemon onesie'
+      expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
       expect(page).not_to have_content 'No items yet'
     end
 
     it 'should allow a user to see a particular item' do
       visit '/items'
-      click_link 'Show'
+      find(:css, "img[src*='pokemon_onesie.jpg']").click
+      # expect(current_path).to eq "/items/#{@new_image.id}"
       expect(page).to have_content 'Pokemon onesie'
-      expect(current_path).to eq "/items/#{@new_image.id}"
     end
 
     it 'should not allow another user to edit a particular item' do
@@ -47,7 +48,7 @@ describe "Item" do
 
     it 'should allow a user to delete his own item' do
       visit ('/items')
-      click_link('Show')
+      find(:css, "img[src*='pokemon_onesie.jpg']").click
       click_link('Destroy')
       expect(page).to have_content("Item was successfully destroyed")
       expect(page).not_to have_content("Best beast for best Halloween")
@@ -74,7 +75,6 @@ describe "Item" do
       expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'
       expect(page).to have_css("img[src*='hippy_jumper.jpg']")
-
     end
   end
 
