@@ -30,7 +30,7 @@ describe "Item" do
       expect(page).not_to have_content 'No items yet'
     end
 
-    it 'should allow a user to see a particular item' do
+    xit 'should allow a user to see a particular item' do
       visit '/'
       find(:css, "img[src*='pokemon_onesie.jpg']").click
       expect(current_path).to eq "/items/#{@new_image.id}"

@@ -31,6 +31,11 @@ describe "My profile" do
       expect(current_path).to eq ("/users/edit")
     end
 
+    it "has a my requests link" do
+      click_link("My Requests")
+      expect(current_path).to eq ("/users/requests")
+    end
+
 
   end
 

@@ -8,7 +8,7 @@
   <div class="container">
     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
       <a href="/items/<%=item.id%>" class='thumbnail'>
-        <%= image_tag(item.image.url(:medium), :alt => item.description, :class => "img-responsive") %>
+        <%= image_tag(item.image.url(:square), :alt => item.description, :class => "img-responsive") %>
       </a>
     </div>
     <% end %>
