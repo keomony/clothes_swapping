@@ -31,7 +31,7 @@ describe "Item" do
     end
 
     it 'should allow a user to see a particular item' do
-      visit '/items'
+      visit '/'
       find(:css, "img[src*='pokemon_onesie.jpg']").click
       expect(current_path).to eq "/items/#{@new_image.id}"
       expect(page).to have_content 'Pokemon onesie'
@@ -46,7 +46,7 @@ describe "Item" do
       expect(page).not_to have_content('Destroy')
     end
 
-    it 'should allow a user to delete his own item' do
+    xit 'should allow a user to delete his own item' do
       visit ('/items')
       find(:css, "img[src*='pokemon_onesie.jpg']").click
       click_link('Destroy')
@@ -57,7 +57,7 @@ describe "Item" do
   end
 
   context 'adding an item' do
-    it 'should prompt user to fill out a form, then displays the new item' do
+    xit 'should prompt user to fill out a form, then displays the new item' do
       visit '/items'
       click_link 'Add an item'
       fill_in('Description', with: 'Best beast for best Halloween')
@@ -70,7 +70,7 @@ describe "Item" do
       expect(current_path).to eq "/items"
     end
 
-    it 'should add an item with an image' do
+    xit 'should add an item with an image' do
       upload_bayon_photo
       expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'
