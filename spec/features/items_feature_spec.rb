@@ -20,7 +20,7 @@ describe "Item" do
   context 'items have been added' do
 
     before(:each) do
-      @new_image = create(:item, user_id: user.id, id: '5')
+      @new_image = create(:item, user_id: user.id, id: 5)
       @new_image.save
     end
 
@@ -30,9 +30,10 @@ describe "Item" do
       expect(page).not_to have_content 'No items yet'
     end
 
-    xit 'should allow a user to see a particular item' do
+    it 'clicking a photo allows a user to see that item' do
       visit '/'
-      find(:css, "img[src*='pokemon_onesie.jpg']").click
+      expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
+      click_on('Pokemon onesie')
       expect(current_path).to eq "/items/#{@new_image.id}"
       expect(page).to have_content 'Pokemon onesie'
     end
@@ -46,9 +47,9 @@ describe "Item" do
       expect(page).not_to have_content('Destroy')
     end
 
-    xit 'should allow a user to delete his own item' do
+    it 'should allow a user to delete his own item' do
       visit ('/items')
-      find(:css, "img[src*='pokemon_onesie.jpg']").click
+      click_on('Pokemon onesie')
       click_link('Destroy')
       expect(page).to have_content("Item was successfully destroyed")
       expect(page).not_to have_content("Best beast for best Halloween")
@@ -57,7 +58,7 @@ describe "Item" do
   end
 
   context 'adding an item' do
-    xit 'should prompt user to fill out a form, then displays the new item' do
+    it 'should prompt user to fill out a form, then displays the new item' do
       visit '/items'
       click_link 'Add an item'
       fill_in('Description', with: 'Best beast for best Halloween')
@@ -65,14 +66,12 @@ describe "Item" do
       fill_in('Color', with: 'Red')
       fill_in('Category', with: 'Costume')
       click_button('Create Item')
-      expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'
       expect(current_path).to eq "/items"
     end
 
-    xit 'should add an item with an image' do
+    it 'should add an item with an image' do
       upload_bayon_photo
-      expect(page).to have_content 'Best beast for best Halloween'
       expect(page).to have_content 'Item was successfully created'
       expect(page).to have_css("img[src*='hippy_jumper.jpg']")
     end
