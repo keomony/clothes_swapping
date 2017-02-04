@@ -24,8 +24,7 @@ config/env.yml
 .env
 
 # Ignore all uploaded images
-
-/public/system/items/*
+/public/system/images/*
 
 # Ignore all testing images
 
