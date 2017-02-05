@@ -25,7 +25,6 @@
   <%= @item.category %>
 </p>
 
-<%= link_to 'Back', items_path %>
 <% if current_user %>
 <% if @item.user_id == current_user.id  %>
 <%= link_to 'Edit', edit_item_path(@item) %>
