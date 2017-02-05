@@ -13,12 +13,11 @@ describe "Item" do
     scenario "should display a prompt to add an item" do
       visit '/items'
       expect(page).to have_content 'No items yet'
-      expect(page).to have_link 'Add an item'
+      expect(page).to have_link 'Add an item' ## this is just in the navbar
     end
   end
 
   context 'items have been added' do
-
     before(:each) do
       @new_image = create(:item, user_id: user.id, id: 5)
       @new_image.save
