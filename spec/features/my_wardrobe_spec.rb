@@ -18,8 +18,8 @@ describe "My Wardrobe" do
   context "Items have been added" do
     before do
       login_as(user, :scope => :user)
-      new_item = create(:item, user_id: user.id)
-      other_item = create(:item,
+      @new_item = create(:item, user_id: user.id)
+      @other_item = create(:item,
         size: "M",
         color: "Multi",
         category: "Top",
@@ -35,6 +35,13 @@ describe "My Wardrobe" do
 
     it "does not display other users items" do
       expect(page).not_to have_css("img[src*='hippy_jumper.jpg']")
+    end
+
+    it 'owner can edit a particular item' do
+      visit "/items/#{@new_item.id}"
+      expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
+      expect(page).to have_content('Edit')
+      expect(page).to have_content('Destroy')
     end
   end
 
