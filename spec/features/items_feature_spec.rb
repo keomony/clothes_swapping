@@ -13,12 +13,11 @@ describe "Item" do
     scenario "should display a prompt to add an item" do
       visit '/items'
       expect(page).to have_content 'No items yet'
-      expect(page).to have_link 'Add an item'
+      expect(page).to have_link 'Add an item' ## this is just in the navbar
     end
   end
 
   context 'items have been added' do
-
     before(:each) do
       @new_image = create(:item, user_id: user.id, id: 5)
       @new_image.save
@@ -57,7 +56,7 @@ describe "Item" do
 
   end
 
-  context 'adding an item' do
+  context 'adding an item (without image)' do
     it 'should prompt user to fill out a form, then displays the new item' do
       visit '/items'
       click_link 'Add an item'
@@ -68,12 +67,6 @@ describe "Item" do
       click_button('Create Item')
       expect(page).to have_content 'Item was successfully created'
       expect(current_path).to eq "/items"
-    end
-
-    it 'should add an item with an image' do
-      upload_bayon_photo
-      expect(page).to have_content 'Item was successfully created'
-      expect(page).to have_css("img[src*='hippy_jumper.jpg']")
     end
   end
 
