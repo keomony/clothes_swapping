@@ -1,12 +1,13 @@
 <h1>Editing Item</h1>
 
 <div class="container">
-  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-    <a href="/items/<%=@item.id%>" class='thumbnail'>
-      <%= image_tag(@item.image.url(:square), :alt => @item.description, :class => "img-responsive") %>
-    </a>
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+      <a href="/items/<%=@item.id%>" class='thumbnail'>
+        <%= image_tag(@item.image.url(:square), :alt => @item.description, :class => "img-responsive") %>
+      </a>
+    </div>
   </div>
   <%= render 'form', item: @item %>
+  <%= link_to 'Show', @item %>
 </div>
-
-<%= link_to 'Show', @item %>
