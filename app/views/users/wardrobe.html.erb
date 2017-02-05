@@ -16,5 +16,10 @@
 </div>
 </div>
 <% else %>
-No items yet
+  <div class="row">
+    <h1>You have not added any clothes yet!</h1>
+  </div>
+  <div class="row">
+    <%= link_to "Add clothes", new_item_path %>
+  <div>
 <% end %>
