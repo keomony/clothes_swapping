@@ -10,6 +10,7 @@
 
 <!-- Custom CSS -->
 <link href="css/business-casual.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -36,12 +37,11 @@
         <ul class="nav navbar-nav">
           <li><a  href="/">Home</a></li>
           <% if user_signed_in? %>
-
           <li>
-          <% if current_user %>
-            <%= link_to 'Add an item', new_item_path %>
-          <% end %>
-        </li>
+            <% if current_user %>
+              <%= link_to 'Add an item', new_item_path %>
+            <% end %>
+          </li>
           <li>
             <%= link_to 'My profile', user_profile_path(current_user) %>
           </li>

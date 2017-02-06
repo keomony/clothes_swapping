@@ -1,7 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h2>Hello, <%= @user.email %><h2>
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+  </div>
 
-<%= link_to 'My Wardrobe', user_wardrobe_path %>
-<%= link_to 'Edit Account', edit_user_registration_path %>
-<%= link_to 'Back', root_path %>
+  <div class="row">
+    <h2>Hello, <%= @user.email %><h2>
+  </div>
+
+  <div class="row">
+    <h3><%= link_to 'My Wardrobe', user_wardrobe_path(current_user) %></h3>
+  </div>
+
+  <div class="row">
+    <h3><%= link_to 'Edit Account Details', edit_user_registration_path %></h3>
+  </div>
+
+  <div class="row">
+    <h3><%= link_to 'Back', root_path %></h3>
+  </div>
+
+</div>

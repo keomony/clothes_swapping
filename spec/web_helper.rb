@@ -28,13 +28,13 @@ def sign_out
   click_link('Sign out')
 end
 
-def upload_bayon_photo
-  visit '/items'
-  click_link 'Add an item'
-  fill_in('Description', with: 'Best beast for best Halloween')
-  fill_in('Size', with: 'M')
-  fill_in('Color', with: 'Red')
-  fill_in('Category', with: 'Costume')
-  attach_file("item[image]", Rails.root + "spec/fixtures/hippy_jumper.jpg")
-  click_button('Create Item')
-end
+# def upload_bayon_photo
+#   visit '/items'
+#   click_link 'Add an item'
+#   fill_in('Description', with: 'Best beast for best Halloween')
+#   fill_in('Size', with: 'M')
+#   fill_in('Color', with: 'Red')
+#   fill_in('Category', with: 'Costume')
+#   attach_file("item[image]", Rails.root + "spec/fixtures/hippy_jumper.jpg")
+#   click_button('Create Item')
+# end
