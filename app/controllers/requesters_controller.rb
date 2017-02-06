@@ -1,4 +1,3 @@
-require 'pry'
 class RequestersController < ApplicationController
   before_action :authenticate_user!
 
