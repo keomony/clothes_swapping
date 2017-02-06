@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170206150349) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170206150349) do
     t.datetime "image_updated_at"
     t.string   "description"
     t.integer  "user_id"
+    t.integer  "requester_id"
+    t.index ["requester_id"], name: "index_items_on_requester_id", using: :btree
     t.index ["user_id"], name: "index_items_on_user_id", using: :btree
   end
 
@@ -56,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170206150349) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "items", "requesters"
   add_foreign_key "items", "users"
   add_foreign_key "requesters", "items"
   add_foreign_key "requesters", "users"
