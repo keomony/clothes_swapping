@@ -72,7 +72,7 @@ describe "Item" do
 
   end
 
-  context 'adding an item (without image)' do
+  context 'adding an item' do
     it 'should prompt user to fill out a form, then displays the new item' do
       visit '/items'
       click_link 'Add an item'
@@ -80,6 +80,7 @@ describe "Item" do
       fill_in('Size', with: 'M')
       fill_in('Color', with: 'Red')
       fill_in('Category', with: 'Costume')
+      attach_file("item[image]", Rails.root + "spec/files/images/hippy_jumper.jpg")
       click_button('Create Item')
       expect(page).to have_content 'Item was successfully created'
       expect(current_path).to eq "/items"
