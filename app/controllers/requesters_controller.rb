@@ -1,19 +1,17 @@
 class RequestersController < ApplicationController
-  protect_from_forgery
-  before_action :authenticate_user!
 
   def create
     item = Item.find(params[:item_id])
-    requester = item.requesters.build_with_user(swap_request_params, current_user)
-    if requester.save
-      redirect_to '/'
+    result = item.requesters.new(item_id: params[:item_id], user: current_user)
+    if result.save
+      redirect_to item_path(params[:item_id])
     else
-      redirect_to '/items'
+      if result.errors[:item_id]
+        redirect_to items_path, notice:  "You have already requested this item"
+      else
+        redirect_to items_path, notice:  "Can't request this item. Unknown error"
+      end
     end
   end
 
-  private
-  def swap_request_params
-    params.require(:requester).permit(:item_id)
-  end
 end

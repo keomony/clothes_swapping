@@ -6,6 +6,6 @@ class Item < ApplicationRecord
 
   #association
   belongs_to :user
-  has_many :requesters, -> { extending WithUserAssociationExtension }
+  has_many :requesters
 
 end
