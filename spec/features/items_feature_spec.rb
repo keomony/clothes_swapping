@@ -17,10 +17,12 @@ describe "Item" do
     end
   end
 
-  context 'items have been added' do
+  context 'items have been added by a different user' do
     before(:each) do
       @new_image = create(:item, user_id: user.id, id: 5)
       @new_image.save
+      sign_out
+      login_as(user_2, :scope => :user)
     end
 
     it 'should display items' do
@@ -36,23 +38,37 @@ describe "Item" do
       expect(current_path).to eq "/items/#{@new_image.id}"
       expect(page).to have_content 'Pokemon onesie'
     end
+  end
 
-    it 'should not allow another user to edit a particular item' do
+  context 'added by current user' do
+    before(:each) do
       sign_out
-      visit('/')
       login_as(user_2, :scope => :user)
-      visit('/')
-      expect(page).not_to have_content('Edit')
-      expect(page).not_to have_content('Destroy')
+      @new_item = create(:item,
+        size: "M",
+        color: "Multi",
+        category: "Top",
+        description: "Hippy Jumper",
+        image: fixture_file_upload(Rails.root.join('spec', 'files', 'images', 'hippy_jumper.jpg'), 'image/png'),
+        user_id: user_2.id)
+    end
+
+    it 'user to edit a particular item' do
+      visit "/items/#{@new_item.id}"
+      expect(page).to have_css("img[src*='hippy_jumper.jpg']")
+      expect(page).to have_content('Edit')
+      click_link('Edit')
+      expect(current_path).to eq "/items/#{@new_item.id}/edit"
     end
 
     it 'should allow a user to delete his own item' do
-      visit ('/items')
-      click_on('Pokemon onesie')
+      visit ("/items/#{@new_item.id}")
+      expect(page).to have_content('Destroy')
       click_link('Destroy')
       expect(page).to have_content("Item was successfully destroyed")
-      expect(page).not_to have_content("Best beast for best Halloween")
     end
+
+
 
   end
 
