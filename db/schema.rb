@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201180845) do
+ActiveRecord::Schema.define(version: 20170206150349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,22 @@ ActiveRecord::Schema.define(version: 20170201180845) do
     t.string   "category"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "description"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "description"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_items_on_user_id", using: :btree
+  end
+
+  create_table "requesters", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.index ["item_id"], name: "index_requesters_on_item_id", using: :btree
+    t.index ["user_id"], name: "index_requesters_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,4 +57,6 @@ ActiveRecord::Schema.define(version: 20170201180845) do
   end
 
   add_foreign_key "items", "users"
+  add_foreign_key "requesters", "items"
+  add_foreign_key "requesters", "users"
 end
