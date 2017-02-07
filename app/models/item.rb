@@ -10,5 +10,6 @@ class Item < ApplicationRecord
   #association
   belongs_to :user
   has_many :requesters, dependent: :destroy
+  has_many :selectors, dependent: :destroy
 
 end

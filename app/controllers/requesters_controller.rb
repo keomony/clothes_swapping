@@ -13,5 +13,11 @@ class RequestersController < ApplicationController
       end
     end
   end
-  
+
+  def index
+    my_items = Item.where(user_id: current_user.id)
+    my_item_ids = my_items.ids
+    @requests = Requester.where(item_id: my_item_ids)
+  end
+
 end

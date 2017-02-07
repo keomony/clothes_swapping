@@ -18,7 +18,7 @@ describe "My profile" do
 
     it "has a link to my wardrobe" do
       click_link("My Wardrobe")
-      expect(current_path).to eq ("/users/#{user.id}/wardrobe")
+      expect(current_path).to eq ("/users/#{user.id}/profile/wardrobe")
     end
 
     it "has a back link" do
@@ -32,7 +32,7 @@ describe "My profile" do
     end
 
     # Revise after requests model is created
-  
+
     # it "has a my requests link" do
     #   click_link("My Requests")
     #   expect(current_path).to eq ("/users/requests")
