@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207183825) do
+ActiveRecord::Schema.define(version: 20170207184607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,8 +53,13 @@ ActiveRecord::Schema.define(version: 20170207183825) do
   end
 
   create_table "swaps", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "requester_id"
+    t.integer  "selector_id"
+    t.string   "status",       default: "pending"
+    t.index ["requester_id"], name: "index_swaps_on_requester_id", using: :btree
+    t.index ["selector_id"], name: "index_swaps_on_selector_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,4 +86,6 @@ ActiveRecord::Schema.define(version: 20170207183825) do
   add_foreign_key "selectors", "items"
   add_foreign_key "selectors", "requesters"
   add_foreign_key "selectors", "users"
+  add_foreign_key "swaps", "requesters"
+  add_foreign_key "swaps", "selectors"
 end
