@@ -31,7 +31,7 @@
     <% else %>
       <form action="/items/<%= @item.id %>/requesters" method ='POST' name='requester'>
         <input type='hidden' name='item_id' value="<%= @item.id %>" >
-        <input type='submit' value='Request'>
+        <input type='submit' value='Request' class="btn btn-primary">
       </form>
     <% end %>
   <% end %>
