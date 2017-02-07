@@ -37,11 +37,11 @@
         <ul class="nav navbar-nav">
           <li><a  href="/">Home</a></li>
           <% if user_signed_in? %>
-          <li>
             <% if current_user %>
-              <%= link_to 'Add an item', new_item_path %>
+              <li>
+                <%= link_to 'Add an item', new_item_path %>
+              </li>
             <% end %>
-          </li>
           <li>
             <%= link_to 'My profile', user_profile_path(current_user) %>
           </li>
@@ -57,10 +57,10 @@
           </li>
           <%end%>
         </ul>
+        <li><img class="brand" src="../images/logos/Recycle001.svg.png" /></li>
       </div>
-      </div>
-    </div>
     </nav>
+
     <%= yield %>
 
   </body>
