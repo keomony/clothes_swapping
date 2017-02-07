@@ -6,6 +6,6 @@ class Item < ApplicationRecord
 
   #association
   belongs_to :user
-  has_many :requesters
+  has_many :requesters, dependent: :destroy
 
 end

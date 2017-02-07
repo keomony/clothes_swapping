@@ -2,5 +2,5 @@ class Requester < ApplicationRecord
   belongs_to :user
   belongs_to :item
 
-  validates :item_id, :uniqueness => {:scope => :user_id}
+  validates :item, :uniqueness => {:scope => :user}
 end
