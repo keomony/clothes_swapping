@@ -25,8 +25,10 @@ config/env.yml
 
 # Ignore all uploaded images
 /public/system/images/*
+/public/images/*
 
 # Ignore all testing images
 
 /spec/fixtures/*
 /spec/files/images/
+.DS_Store
