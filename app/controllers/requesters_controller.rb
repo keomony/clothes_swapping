@@ -15,9 +15,9 @@ class RequestersController < ApplicationController
   end
 
   def index
-    bob = Item.where(user_id: current_user.id)
-    my_item_ids = bob.ids
-    @requests = Requester.where(item_id: my_item_ids) 
+    my_items = Item.where(user_id: current_user.id)
+    my_item_ids = my_items.ids
+    @requests = Requester.where(item_id: my_item_ids)
   end
 
 end
