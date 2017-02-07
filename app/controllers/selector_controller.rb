@@ -1,0 +1,2 @@
+class SelectorController < ApplicationController
+end
