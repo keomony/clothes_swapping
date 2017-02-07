@@ -1,34 +1,39 @@
 
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <%= image_tag @item.image.url(:medium) %>
+  </p>
 
-<p id="notice"><%= notice %></p>
-<p>
-  <%= image_tag @item.image.url(:medium) %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @item.description %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+  <p>
+    <strong>Size:</strong>
+    <%= @item.size %>
+  </p>
 
-<p>
-  <strong>Size:</strong>
-  <%= @item.size %>
-</p>
+  <p>
+    <strong>Color:</strong>
+    <%= @item.color %>
+  </p>
 
-<p>
-  <strong>Color:</strong>
-  <%= @item.color %>
-</p>
+  <p>
+    <strong>Category:</strong>
+    <%= @item.category %>
+  </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @item.category %>
-</p>
-
-<%= link_to 'Back', items_path %>
-<% if current_user %>
-<% if @item.user_id == current_user.id  %>
-<%= link_to 'Edit', edit_item_path(@item) %>
-<%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-<% end %>
+  <% if current_user %>
+  <% if @item.user_id == current_user.id  %>
+  <%= link_to 'Edit', edit_item_path(@item) %>
+  <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% else %>
+  <form action="/items/<%= @item.id %>/requesters" method ='POST' name='requester'>
+    <input type='hidden' name='item_id' value="<%= @item.id %>" >
+    <input type='submit' value='Request'>
+  </form>
+  <% end %>
+  <% end %>
+</div>

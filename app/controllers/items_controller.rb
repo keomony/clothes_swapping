@@ -4,7 +4,12 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if current_user
+      @user = User.find(current_user.id)
+      @items = Item.all - @user.items
+    else
+      @items = Item.all
+    end
   end
 
   # GET /items/1
@@ -17,6 +22,9 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
+
+
+
 
   # GET /items/1/edit
   def edit

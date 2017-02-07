@@ -1,41 +1,30 @@
-<%= form_for item, :html => {multipart: true} do |f| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<div class="container">
+  <%= simple_form_for item, :html => {multipart: true, class: 'form-horizontal', wrapper: :horizontal_input_group},
+      wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean } do |f| %>
+    <%= f.error_notification %>
 
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="form-inputs">
+      <%= f.input :description, class: "form-control" %>
+      <%= f.input :size, class: "form-control" %>
+      <%= f.input :category, class: "form-control"%>
+      <%= f.input :color,  class: "form-control" %>
     </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.input :image,  type: "file" %>
+        <!-- <input class="btn btn-primary" name="image" type="file" /> -->
+      </div>
+
+      <div class="form-actions col-md-2">
+        <input class="btn btn-primary" name="image" type="submit" value="Create Item">
+      </div>
+
+    </div>
+
   <% end %>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :size %>
-    <%= f.text_field :size %>
-  </div>
-
-  <div class="field">
-    <%= f.label :color %>
-    <%= f.text_field :color %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category %>
-    <%= f.text_field :category %>
-  </div>
-
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
