@@ -1,0 +1,18 @@
+<% if @requester.items.any? %>
+<% @requester.items.each do |item| %>
+<div class="row">
+  <div class="container">
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+      <a href="/items/<%=item.id%>" class='thumbnail'>
+        <%= image_tag(item.image.url(:square), :alt => item.description, :class => "img-responsive") %>
+      </a>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>
+<% else %>
+  <div class="row">
+    <h1>They've got no clothes the cheeky b*****</h1>
+  </div>
+<% end %>
