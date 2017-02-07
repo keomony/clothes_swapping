@@ -5,8 +5,7 @@ describe "Request" do
   let(:user) { create(:user) }
   let(:user_2) { create(:user, email: "testthisthing@test.com", id: '101') }
   let(:item) {create(:item, user_id: user.id)}
-  let(:request_params) { {user_id: user.id, item_id: item.id} }
-  subject(:request) { item.requesters.build_with_user(request_params, user) }
+  subject(:request) { item.requesters.create(item_id: item.id, user: user) }
 
   before do
     login_as(user, :scope => :user)
@@ -23,6 +22,6 @@ describe "Request" do
 
   scenario "user makes a request for an item" do
     visit "/items/#{item.id}"
-    expect{click_link("Request")}.to change{Requester.count}.by(1)
+    expect{click_button("Request")}.to change{Requester.count}.by(1)
   end
 end
