@@ -1,28 +1,34 @@
 [![Stories in Ready](https://badge.waffle.io/keomony/clothes_swapping.png?label=ready&title=Ready)](https://waffle.io/keomony/clothes_swapping)
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Clothes Swapping
 
-Things you may want to cover:
+Re-cycle Re-clothe Re-wardrobe!
 
-* Ruby version
+App can be viewed at http://clothes-swapping.herokuapp.com
 
-* System dependencies
+## Synopsis
 
-* Configuration
+A web app for users to exchange clothes with one another. There is no monetization, the app is designed to reduce the waste involved in keeping your wardrobe fresh and on-trend.
 
-* Database creation
+## System Dependencies
 
-* Database initialization
+ * Ruby on Rails 5.0.1
+ * bootstrap - styling
+ * envyable - environment files
+ * dotenv  - environment files
+ * simple_form - form formatting
+ * devise - user authentication
+ * paperclip - file uploading
+ * imagemagick - image compression and resizing
+ * amazon web services - cloud storage for images
 
-* How to run the test suite
+## Installation Instructions
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-For storing image in your local machine
-brew install imagemagick
+ * Fork and clone this repo
+ * brew install imagemagick
+ * run `bundle` to install dependencies
+ * run `bin/rake db:create` to create local databases
+ * run `bin/rake db:migrate` to perform necessary migrations
+ * run `rspec` to run the testing suite
+ * run `bin/rails s` to start the server
+ * visit `http://localhost:3000` to see the app
