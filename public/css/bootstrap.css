@@ -1190,7 +1190,7 @@ h6,
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.1;
-  color: inherit;
+  color: #40bd76;
 }
 h1 small,
 h2 small,
@@ -3118,7 +3118,6 @@ fieldset[disabled] .btn-default.focus {
   background-color: #333333;
 }
 .btn-primary {
-  border-radius: 25px;
   color: #ffffff;
   background-color: #40BD76;
   border-color: #737f78;
