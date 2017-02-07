@@ -13,5 +13,9 @@ class RequestersController < ApplicationController
       end
     end
   end
-  
+
+  def index
+    @requests = Requester.where(user_id: current_user.id)
+  end
+
 end

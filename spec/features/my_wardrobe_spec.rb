@@ -8,7 +8,7 @@ describe "My Wardrobe" do
   context "No items have been added" do
     before do
       login_as(user, :scope => :user)
-      visit "/users/#{user.id}/wardrobe"
+      visit "/users/#{user.id}/profile/wardrobe"
     end
     it "displays a message 'No items'" do
       expect(page).to have_content("You have not added any clothes yet!")
@@ -26,7 +26,7 @@ describe "My Wardrobe" do
         description: "Hippy Jumper",
         image: fixture_file_upload(Rails.root.join('spec', 'files', 'images', 'hippy_jumper.jpg'), 'image/png'),
         user_id: user_2.id)
-      visit "/users/#{user.id}/wardrobe"
+      visit "/users/#{user.id}/profile/wardrobe"
     end
 
     it "displays the users items" do

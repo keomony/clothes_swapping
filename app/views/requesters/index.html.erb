@@ -1,1 +1,9 @@
 <h1>Hello</h1>
+
+<ul>
+  <% @requests.each do |request| %>
+  <li><%= image_tag request.item.image.url(:thumb) %> </li>
+  <li><%= request.item.user.email %>
+  <li><%= link_to "Their wardrobe", second_choice_path %>
+  <%end%>
+</ul>

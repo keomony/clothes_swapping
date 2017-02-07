@@ -24,4 +24,11 @@ describe "Request" do
     visit "/items/#{item.id}"
     expect{click_button("Request")}.to change{Requester.count}.by(1)
   end
+
+  xscenario "user can see the requests they have made" do
+    visit "/items/#{item.id}"
+    click_button("Request")
+    visit "/users/#{user.id}/profile/requests"
+    expect(page).to have_content("Pokemon onesie")
+  end
 end
