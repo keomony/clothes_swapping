@@ -8,9 +8,4 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :requesters, dependent: :destroy
 
-  # has_many :requested_items, through: :requesters, source: :item
-  #
-  # def has_requested?(item)
-  #   requested_items.include? item
-  # end
 end
