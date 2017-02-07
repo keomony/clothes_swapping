@@ -3118,6 +3118,7 @@ fieldset[disabled] .btn-default.focus {
   background-color: #333333;
 }
 .btn-primary {
+  border-radius: 25px;
   color: #ffffff;
   background-color: #40BD76;
   border-color: #737f78;
