@@ -6,10 +6,9 @@ class Item < ApplicationRecord
   validates_presence_of(:description, :color, :category, :size, :image)
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+  #association
   belongs_to :user
-
-  has_many :requesters,
-    -> { extending WithUserAssociationExtension },
-    dependent: :destroy
-
+  has_many :requesters
+  
 end

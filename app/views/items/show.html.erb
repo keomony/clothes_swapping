@@ -30,7 +30,10 @@
   <%= link_to 'Edit', edit_item_path(@item) %>
   <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% else %>
-  <%= link_to "Request", new_item_requester_path({item_id: @item.id, user_id:current_user.id}) %>
+  <form action="/items/<%= @item.id %>/requesters" method ='POST' name='requester'>
+    <input type='hidden' name='item_id' value="<%= @item.id %>" >
+    <input type='submit' value='Request'>
+  </form>
   <% end %>
   <% end %>
 </div>

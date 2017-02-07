@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+
   resources :items do
     resources :requesters
-  end
+  end 
+
   root "items#index"
 
   get 'users/:id' => 'users#show', as: 'user_profile'
