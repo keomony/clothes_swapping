@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206150349) do
+ActiveRecord::Schema.define(version: 20170207105213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 20170206150349) do
     t.index ["user_id"], name: "index_requesters_on_user_id", using: :btree
   end
 
+  create_table "selectors", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "requester_id"
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.index ["item_id"], name: "index_selectors_on_item_id", using: :btree
+    t.index ["requester_id"], name: "index_selectors_on_requester_id", using: :btree
+    t.index ["user_id"], name: "index_selectors_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -62,4 +73,7 @@ ActiveRecord::Schema.define(version: 20170206150349) do
   add_foreign_key "items", "users"
   add_foreign_key "requesters", "items"
   add_foreign_key "requesters", "users"
+  add_foreign_key "selectors", "items"
+  add_foreign_key "selectors", "requesters"
+  add_foreign_key "selectors", "users"
 end

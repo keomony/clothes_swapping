@@ -7,5 +7,5 @@ class User < ApplicationRecord
 
   has_many :items, dependent: :destroy
   has_many :requesters, dependent: :destroy
-
+  has_many :selectors, dependent: :destroy
 end
