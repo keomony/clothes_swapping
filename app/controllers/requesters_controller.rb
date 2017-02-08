@@ -18,6 +18,23 @@ class RequestersController < ApplicationController
     my_items = Item.where(user_id: current_user.id)
     my_item_ids = my_items.ids
     @requests = Requester.where(item_id: my_item_ids)
+    if completed_requests != nil
+      @uncompleted_requests = @requests - completed_requests
+    else
+      @uncompleted_requests = @requests
+    end
+  end
+
+  def completed_requests
+    if Selector.any?
+    my_selectors = Selector.where(user_id: current_user.id)
+    my_selectors_id = my_selectors.ids
+    my_requesters = Requester.where(user_id: current_user.id)
+    swaps = Swap.where(selector_id: my_selectors_id)
+    ids = []
+    swaps.each {|swap| ids << swap.requester_id }
+    completed_requests = Requester.where(id: ids)
+  end
   end
 
 end
