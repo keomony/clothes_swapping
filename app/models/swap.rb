@@ -1,0 +1,4 @@
+class Swap < ApplicationRecord
+
+
+end

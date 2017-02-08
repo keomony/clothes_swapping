@@ -10,8 +10,13 @@ class SelectorsController < ApplicationController
   end
 
   def create
-    @selector = Selector.create(selector_params)
-    redirect_to '/users/:id/profile/selectors/complete'
+    @selector = Selector.new(selector_params)
+    if @selector.save
+      Swap.create!(requester_id: params[:requester_id], selector_id: @selector.id, status: 'Confirmed')
+      redirect_to '/users/:id/profile/selectors/complete'
+    else
+      redirect_to request_back_path, notice:  "You have already requested this item"
+    end
   end
 
   def show
