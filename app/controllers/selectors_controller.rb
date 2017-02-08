@@ -10,7 +10,7 @@ class SelectorsController < ApplicationController
   end
 
   def create
-    @selector = Selector.create!(selector_params)
+    @selector = Selector.create(selector_params)
     redirect_to '/users/:id/profile/selectors/complete'
   end
 
