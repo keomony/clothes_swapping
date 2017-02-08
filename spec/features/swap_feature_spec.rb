@@ -13,6 +13,7 @@ describe "Swap" do
   subject(:selectee) { request.selector.create(item_id: item_2.id, user_id: user_1.id, requester_id: request.id ) }
 
   scenario "build a selector" do
+    require 'pry'; binding.pry
     expect(selectee).to be_a(Selector)
   end
 
