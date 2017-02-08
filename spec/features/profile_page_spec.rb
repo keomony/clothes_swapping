@@ -31,6 +31,11 @@ describe "My profile" do
       expect(current_path).to eq ("/users/edit")
     end
 
+    it "has a link to swap page" do
+      click_link("Swaps")
+      expect(current_path).to eq("/users/#{user.id}/profile/swaps")
+    end
+
     # Revise after requests model is created
 
     # it "has a my requests link" do

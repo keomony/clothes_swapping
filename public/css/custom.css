@@ -1,0 +1,9 @@
+p#notice {
+  color: #008cba;
+}
+
+img.brand {
+  max-width: 4em;
+  max-height: 4em;
+  float: right;
+}
