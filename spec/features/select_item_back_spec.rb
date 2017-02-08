@@ -16,7 +16,7 @@ describe "Select back" do
   before do
     login_as(user_2, :scope => :user)
     item_2 = create(:item, user_id: user_2.id)
-    request =  item.requesters.create(item_id: item.id, user_id: user_2.id)
+    requester =  item.requesters.create(item_id: item.id, user_id: user_2.id)
     login_as(user_1, :scope => :user)
   end
 
@@ -30,7 +30,7 @@ describe "Select back" do
 
   end
 
-  scenario "after the swap is done, not to have picture of the item in the wardrobe" do
+  xscenario "after the swap is done, not to have picture of the item in the wardrobe" do
     visit "/users/#{user_1.id}/profile/requests"
     click_link("Their wardrobe")
     click_link("Request back")
