@@ -1,22 +1,28 @@
 class SelectorsController < ApplicationController
 
   def index
-    @request = Requester.find(params[:request_id])
-    @requester = User.find(@request.user_id)
+    @requester = Requester.find(params[:request_id])
+    @request_user = User.find(@requester.user_id)
+  end
+
+  def new
+    @selector = Selector.new
   end
 
   def create
-    #maybe needs Requester.selector.create
-    @selector = Selector.create(user_id: params[:user_id],
-                                item_id: params[:item_id],
-                                requester_id: params[:requester_id])
-
+    @selector = Selector.create(selector_params)
     redirect_to '/users/:id/profile/selectors/complete'
   end
 
   def show
-
+    @my_selected = Selector.where(user_id: current_user.id)
+    # p @my_selected
   end
 
+  private
+
+  def selector_params
+    params.permit(:user_id, :item_id, :requester_id)
+  end
 
 end
