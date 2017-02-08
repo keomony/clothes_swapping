@@ -7,3 +7,7 @@ img .brand {
   max-height: 2em;
   float: right;
 }
+
+img {
+  border-radius: 20px;
+}
