@@ -10,21 +10,13 @@ class SelectorsController < ApplicationController
   end
 
   def create
-    #maybe needs Requester.selector.create
-    # require 'pry'; binding.pry
     @selector = Selector.create!(selector_params)
     redirect_to '/users/:id/profile/selectors/complete'
   end
 
   def show
-    # @requester = Requester.find(params[:request_id])
-    # @requester = Requester.where(user_id: current_user.id)
     @my_selected = Selector.where(user_id: current_user.id)
-    p @my_selected
-    # require 'pry'; binding.pry
-
-    # @items = @my_selected.items
-    # @requesters = Requester.where(user_id: @items.user.id)
+    # p @my_selected
   end
 
   private
