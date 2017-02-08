@@ -10,12 +10,12 @@
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
           <ul>
             <li>
-              <%= image_tag(swap.selector.item.image.url(:square), :alt => swap.selector.item.description, :class => "img-responsive") %>  <br />
-              <%= swap.selector.user.email %>
+              <% item = Item.find(Selector.find(swap.selector_id).item_id) %>
+              <%= image_tag(item.image.url(:square), :alt => item.description, :class => "img-responsive") %>
             </li>
             <li>
-              <%= image_tag(swap.requester.item.image.url(:square), :alt => swap.requester.item.description, :class => "img-responsive") %> <br />
-              <%= swap.requester.user.email %>
+              <% item = Item.find(Requester.find(swap.requester_id).item_id)%>
+              <%= image_tag(item.image.url(:square), :alt => item.description, :class => "img-responsive") %>
             </li>
           </ul>
         </div>
@@ -23,6 +23,6 @@
       </div>
     </div>
   <% else %>
-    No items yet
+    No swaps yet
   <% end %>
 </div>
