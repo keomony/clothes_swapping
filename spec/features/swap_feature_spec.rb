@@ -10,13 +10,13 @@ describe "Swap" do
 
 
   subject(:request) { item_1.requesters.create(item_id: item_1.id, user_id: user_2.id) }
-  subject(:selectee) { request.selector.create(item_id: item_2.id, user_id: user_1.id, requester_id: request.id ) }
+  subject(:selectee) { Selector.create(item_id: item_2.id, user_id: user_1.id, requester_id: request.id ) }
 
   scenario "build a selector" do
-    require 'pry'; binding.pry
     expect(selectee).to be_a(Selector)
   end
 
-  scenario "" do
+  scenario "user should see both items" do
+    visit ''
   end
 end

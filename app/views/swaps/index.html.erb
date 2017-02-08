@@ -2,18 +2,27 @@
   <p id="notice"><%= notice %></p>
   <% if @swaps.any? %>
     <div class="col-lg-12">
-      <h1 class="page-header">Swap Zone</h1>
+      <h1 class="page-header">Swaps</h1>
     </div>
     <% @swaps.each do |swap| %>
     <div class="row">
       <div class="container">
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-          </a>
+          <ul>
+            <li>
+              <%= image_tag(swap.selector.item.image.url(:square), :alt => swap.selector.item.description, :class => "img-responsive") %>  <br />
+              <%= swap.selector.user.email %>
+            </li>
+            <li>
+              <%= image_tag(swap.requester.item.image.url(:square), :alt => swap.requester.item.description, :class => "img-responsive") %> <br />
+              <%= swap.requester.user.email %>
+            </li>
+          </ul>
         </div>
         <% end %>
       </div>
     </div>
   <% else %>
-    No swaps yet
+    No items yet
   <% end %>
 </div>

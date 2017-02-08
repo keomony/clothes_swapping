@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :requesters
   end
 
+  resources :swaps
+
 
   root "items#index"
 
@@ -12,5 +14,6 @@ Rails.application.routes.draw do
   get 'users/:id/profile/wardrobe' => 'users#wardrobe', as: 'wardrobe'
   get 'users/:id/profile/requests' => 'requesters#index', as: 'requests'
   get 'users/:id/profile/selectors' => 'selector#index', as: 'second_choice'
+  get 'users/:id/profile/swaps' => 'swaps#index', as: 'users_swaps_page'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
