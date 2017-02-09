@@ -18,10 +18,6 @@ describe "Swap" do
     sign_out
   end
 
-  xscenario "build a selector" do
-    expect(selectee).to be_a(Selector)
-  end
-
   scenario "user should see both items" do
     login_as(jack, :scope => :user)
     visit "/users/#{jack.id}"
@@ -32,4 +28,15 @@ describe "Swap" do
     click_link("Swaps")
     expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
   end
+
+  scenario "user has made a swap, there item should no longer display in wardrobe" do
+    login_as(jack, :scope => :user)
+    visit "/users/#{jack.id}"
+    click_link("Requests received")
+    click_link("Their wardrobe")
+    click_link("Request back")
+    visit "/users/#{jack.id}/profile/wardrobe"
+    expect(page).not_to have_css("img[src*='pokemon_onesie.jpg']")
+  end
+
 end

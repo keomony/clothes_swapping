@@ -21,7 +21,6 @@ class SelectorsController < ApplicationController
 
   def show
     @my_selected = Selector.where(user_id: current_user.id)
-    # p @my_selected
   end
 
   private
