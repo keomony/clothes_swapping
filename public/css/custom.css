@@ -1,9 +1,10 @@
 p#notice {
-  color: #008cba;
+  color: #358753;
 }
 
 img.brand {
-  max-width: 4em;
-  max-height: 4em;
-  float: right;
+  margin-top: 3px;
+max-width: 5em;
+max-height: 5em;
+float: right;
 }

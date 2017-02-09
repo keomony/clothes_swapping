@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="well bs-component">
   <%= simple_form_for item, :html => {multipart: true, class: 'form-horizontal', wrapper: :horizontal_input_group},
       wrapper_mappings: {
         check_boxes: :horizontal_radio_and_checkboxes,
@@ -7,24 +8,25 @@
         boolean: :horizontal_boolean } do |f| %>
     <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.input :description, class: "form-control" %>
-      <%= f.input :size, class: "form-control" %>
-      <%= f.input :category, class: "form-control"%>
-      <%= f.input :color,  class: "form-control" %>
-    </div>
 
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.input :image,  type: "file" %>
-        <!-- <input class="btn btn-primary" name="image" type="file" /> -->
+    <%= f.input :description, class: "form-control" %>
+    <%= f.input :size, class: "form-control" %>
+    <%= f.input :category, class: "form-control"%>
+    <%= f.input :color,  class: "form-control" %>
+    <%= f.input :image,  type: "file",  class: "form-control" %>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <%= f.button :submit %>
       </div>
+    </div>
+    <!-- <div class="row">
 
       <div class="form-actions col-md-2">
         <input class="btn btn-primary" name="image" type="submit" value="Create Item">
       </div>
 
-    </div>
-
+    </div> -->
   <% end %>
+
+</div>
 </div>

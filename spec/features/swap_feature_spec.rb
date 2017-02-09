@@ -4,9 +4,6 @@ describe "Swap" do
 
   let(:mony) { create(:user) }
   let(:jack) { create(:user, email: "testthisthing@test.com", id: '101') }
-  #
-  # let(:mony_item) {create(:item, user_id: mony.id, id: '200')}
-  # let(:jack_item) {create(:item, user_id: jack.id, color: 'blue', description: "Squirtle Onesie", id: "201")}
 
   before do
     login_as(jack, :scope => :user)
@@ -19,7 +16,7 @@ describe "Swap" do
     login_as(jack, :scope => :user)
     visit "/users/#{jack.id}"
     click_link("Requests received")
-    click_link("Their wardrobe")
+    click_link("#{mony.email}'s wardrobe")
   end
 
   scenario "build a selector" do
@@ -27,7 +24,6 @@ describe "Swap" do
   end
 
   scenario "user should see both items" do
-  
     click_link("Request back")
     visit "/users/#{jack.id}"
     click_link("Swaps")
