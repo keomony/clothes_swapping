@@ -28,5 +28,7 @@ config/env.yml
 /public/system/images/*
 
 # Ignore all testing images
-
 /spec/fixtures/*
+
+# Ignore coverage report files
+/coverage/*
