@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
   def index
     if current_user
       @user = User.find(current_user.id)
-      @items = Item.all - @user.items
+      @uncompleted_items = Item.all - @user.items - completed_items
     else
-      @items = Item.all
+      @uncompleted_items = Item.all - completed_items
     end
   end
 
@@ -22,9 +22,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-
-
-
 
   # GET /items/1/edit
   def edit
@@ -75,6 +72,26 @@ class ItemsController < ApplicationController
   end
 
   private
+
+    def completed_requester_items
+      swaps = Swap.all
+      completed_requests_id = swaps.map {|swap| swap.requester_id }
+      completed_requests = Requester.where(id: completed_requests_id)
+      completed_items_id_requests = completed_requests.map {|request| request.item_id}
+      completed_items_requests = Item.where(id: completed_items_id_requests)
+    end
+
+    def completed_selector_items
+      swaps = Swap.all
+      completed_selectors_id = swaps.map {|swap| swap.selector_id } #find_ids(swap)
+      completed_selectors = Selector.where(id: completed_selectors_id)
+      completed_items_id_selectors = completed_selectors.map {|selectors| selectors.item_id} #find_ids(completed_selectors)
+      completed_items_selectors = Item.where(id: completed_items_id_selectors)
+    end
+
+    def completed_items
+      completed_selector_items + completed_requester_items
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])

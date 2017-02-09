@@ -29,7 +29,17 @@ describe "Swap" do
     expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
   end
 
-  scenario "user has made a swap, there item should no longer display in wardrobe" do
+  scenario "user has made a swap, there item should no longer display on the homepage" do
+    login_as(jack, :scope => :user)
+    visit "/users/#{jack.id}"
+    click_link("Requests received")
+    click_link("Their wardrobe")
+    click_link("Request back")
+    visit "/"
+    expect(page).not_to have_css("img[src*='pokemon_onesie.jpg']")
+  end
+
+  scenario "user has made a swap, there item should no longer display in their wardrobe" do
     login_as(jack, :scope => :user)
     visit "/users/#{jack.id}"
     click_link("Requests received")
