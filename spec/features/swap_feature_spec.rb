@@ -18,7 +18,7 @@ describe "Swap" do
     click_link("Requests received")
     click_link("#{mony.email}'s wardrobe")
   end
-
+  
   scenario "build a selector" do
     expect{click_link("Request back")}.to change{Selector.count}.by(1)
   end
@@ -29,4 +29,21 @@ describe "Swap" do
     click_link("Swaps")
     expect(page).to have_css("img[src*='pokemon_onesie.jpg']")
   end
+
+  scenario "user has made a swap, there item should no longer display on the homepage" do
+    click_link("Request back")
+    visit "/"
+    expect(page).not_to have_css("img[src*='pokemon_onesie.jpg']")
+  end
+
+  scenario "user has made a swap, there item should no longer display in their wardrobe" do
+    login_as(jack, :scope => :user)
+    visit "/users/#{jack.id}"
+    click_link("Requests received")
+    click_link("#{mony.email}'s wardrobe")
+    click_link("Request back")
+    visit "/users/#{jack.id}/profile/wardrobe"
+    expect(page).not_to have_css("img[src*='pokemon_onesie.jpg']")
+  end
+
 end
