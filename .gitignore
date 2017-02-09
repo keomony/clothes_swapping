@@ -29,7 +29,10 @@ config/env.yml
 /public/images/*
 
 # Ignore all testing images
-
 /spec/fixtures/*
 /spec/files/images/
-.DS_Store
+
+
+
+# Ignore coverage report files
+/coverage/*
