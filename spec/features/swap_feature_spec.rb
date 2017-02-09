@@ -26,7 +26,7 @@ describe "Swap" do
     login_as(jack, :scope => :user)
     visit "/users/#{jack.id}"
     click_link("Requests received")
-    click_link("Their wardrobe")
+    click_link("#{mony.email}'s wardrobe")
     click_link("Request back")
     visit "/users/#{jack.id}"
     click_link("Swaps")

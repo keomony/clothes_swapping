@@ -1,9 +1,27 @@
-<h1>Hello</h1>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <% if @uncompleted_requests.any? %>
+    <div class="col-lg-12">
+      <h1 class="page-header">Requests received</h1>
+    </div>
 
-<ul>
-  <% @uncompleted_requests.each do |request| %>
-  <li><%= image_tag request.item.image.url(:thumb) %> </li>
-  <li><%= request.user.email %>
-  <li><%= link_to "Their wardrobe", second_choice_path(request_id: request) %>
-  <%end%>
-</ul>
+    <div class="row">
+      <div class="container">
+        <% @uncompleted_requests.each do |uncompleted_request| %>
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <%= image_tag(uncompleted_request.item.image.url(:square), :alt => uncompleted_request.item.description, :class => "img-responsive") %>
+              </div>
+              <div class="panel-footer">
+                <h3 class="panel-title"><%= link_to "#{uncompleted_request.user.email}'s wardrobe", second_choice_path(request_id: uncompleted_request) %></h3>
+              </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  <% else %>
+    No request received yet
+  <% end %>
+</div>

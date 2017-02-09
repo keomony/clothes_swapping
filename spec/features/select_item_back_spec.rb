@@ -18,14 +18,14 @@ describe "Select back" do
 
   scenario "user makes a request back" do
     visit "/users/#{russell.id}/profile/requests"
-    click_link("Their wardrobe")
+    click_link("#{agata.email}'s wardrobe")
     expect(page).to have_content("Request back")
     expect{click_link("Request back")}.to change{Selector.count}.by(1)
   end
 
   scenario "after the swap is done, not to request visible" do
     visit "/users/#{russell.id}/profile/requests"
-    click_link("Their wardrobe")
+    click_link("#{agata.email}'s wardrobe")
     click_link("Request back")
     visit "/users/#{russell.id}/profile/requests"
     expect(page).not_to have_css("img[src*='pokemon_onesie.jpg']")
