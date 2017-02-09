@@ -13,7 +13,8 @@ class SelectorsController < ApplicationController
     @selector = Selector.new(selector_params)
     if @selector.save
       Swap.create!(requester_id: params[:requester_id], selector_id: @selector.id, status: 'Confirmed')
-      redirect_to '/users/:id/profile/selectors/complete'
+      redirect_to swaps_path, notice:  "Your swap has successfully been completed"
+      # redirect_to '/users/:id/profile/selectors/complete'
     else
       redirect_to request_back_path, notice:  "You have already requested this item"
     end
