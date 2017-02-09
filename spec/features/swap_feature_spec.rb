@@ -16,17 +16,18 @@ describe "Swap" do
     mony_item = create(:item, user_id: mony.id, id: '200')
     requester =  jack_item.requesters.create(item_id: jack_item.id, user_id: mony.id)
     sign_out
-  end
-
-  xscenario "build a selector" do
-    expect(selectee).to be_a(Selector)
-  end
-
-  scenario "user should see both items" do
     login_as(jack, :scope => :user)
     visit "/users/#{jack.id}"
     click_link("Requests received")
     click_link("Their wardrobe")
+
+  end
+
+  scenario "build a selector" do
+    expect{click_link("Request back")}.to change{Selector.count}.by(1)
+  end
+
+  scenario "user should see both items" do
     click_link("Request back")
     visit "/users/#{jack.id}"
     click_link("Swaps")

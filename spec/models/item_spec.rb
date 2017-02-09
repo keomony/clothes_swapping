@@ -29,9 +29,8 @@ describe Item, type: :model do
       expect(item).not_to be_valid
     end
 
-    xit "is not valid without an image" do
-      item[:image] = nil
-      expect(item).not_to be_valid
+    it "is not valid without an image" do
+      expect{item[:image] = nil}.to raise_error(NameError)
     end
   end
 end
