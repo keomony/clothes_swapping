@@ -29,4 +29,13 @@ describe "Request" do
     visit "/users/#{agata.id}/profile/requests"
     expect(page).to have_content("#{russell.email}")
   end
+
+  scenario "russell cannot request agata's item twice" do
+    visit "/items/#{agatas_item.id}"
+    click_button("Request")
+    visit "/items/#{agatas_item.id}"
+    click_button("Request")
+    expect(page).to have_content "You have already requested this item"
+  end
+
 end
