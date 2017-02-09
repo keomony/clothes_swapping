@@ -10,7 +10,7 @@ class SwapsController < ApplicationController
     @swaps = Swap.where(selector_id: my_selector_ids)
     @swaps += Swap.where(selector_id: selectors.ids)
 
-    
+
   end
 
 end
