@@ -17,5 +17,8 @@
   get 'users/:id/profile/selectors' => 'selectors#index', as: 'second_choice'
   get 'users/:id/profile/selectors/confirm' => 'selectors#create', as: 'request_back'
   get 'users/:id/profile/selectors/complete' => 'selectors#show', as: 'complete_swaps'
+
+  get "/pages/:page" => "pages#show"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
