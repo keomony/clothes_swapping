@@ -2,9 +2,12 @@
 
 # Clothes Swapping
 
+<a href="url"><img src="http://clothes-swapping.herokuapp.com/images/logos/logo_25.png" align="top" height="200" width="200" ></a>
+
 Re-cycle Re-clothe Re-wardrobe!
 
 App can be viewed at http://clothes-swapping.herokuapp.com
+
 
 ## Synopsis
 
