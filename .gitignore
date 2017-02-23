@@ -32,7 +32,8 @@ config/env.yml
 /spec/fixtures/*
 /spec/files/images/
 
-
+# Ignore DS store files
+.DS_Store
 
 # Ignore coverage report files
 /coverage/*

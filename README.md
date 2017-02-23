@@ -8,6 +8,7 @@ Re-cycle Re-clothe Re-wardrobe!
 
 App can be viewed at http://clothes-swapping.herokuapp.com
 
+![screenshot](http://i.imgur.com/UAWK5L4.png")
 
 ## Synopsis
 
